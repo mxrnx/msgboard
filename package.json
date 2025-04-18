@@ -1,0 +1,23 @@
+{
+  "name": "msgboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/node": "^22.14.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "dev:watch": "nodemon --watch src --ext ts --exec ts-node src/server.ts"
+  }
+}

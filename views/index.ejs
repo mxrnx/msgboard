@@ -1,0 +1,38 @@
+<% threads.forEach(thread => { %>
+    <div class="thread">
+        <div>
+            <span class="icon"><%= thread.icon %></span>
+            <a href="/<%= thread.id %>.html">
+                <%= thread.title %>
+            </a>
+        </div>
+        <p><%= thread.message %></p>
+
+        <% thread.replies.forEach(reply => { %>
+            <div class="reply">
+                <p><%= reply.message %></p>
+            </div>
+        <% }) %>
+    </div>
+<% }) %>
+
+<hr>
+
+<h2>Start a New Thread</h2>
+<form method="POST" action="/addPost">
+    <label>Emoji Icon:
+        <select name="icon">
+            <option>🦅</option>
+            <option>⚔️</option>
+            <option>🏛️</option>
+            <option>🔥</option>
+            <option>🌿</option>
+        </select>
+    </label>
+    <label>
+        Title
+        <input type="text" name="title" placeholder="Enter a title..." required>
+    </label>
+    <textarea name="message" required></textarea>
+    <button type="submit">Post Thread</button>
+</form>

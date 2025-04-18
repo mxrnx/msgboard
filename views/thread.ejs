@@ -1,0 +1,21 @@
+<div class="thread">
+    <div>
+        <span class="icon"><%= thread.icon %></span>
+        <%= thread.title %>
+    </div>
+    <p><%= thread.message %></p>
+</div>
+
+<% replies.forEach(reply => { %>
+    <div class="reply">
+        <p><%= reply.message %></p>
+    </div>
+<% }) %>
+
+<form method="POST" action="/addPost">
+    <input type="hidden" name="reply_to" value="<%= thread.id %>">
+    <textarea name="message" required></textarea>
+    <button type="submit">Reply</button>
+</form>
+
+<p><a href="/index.html">Back to index</a></p>

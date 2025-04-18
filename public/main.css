@@ -1,0 +1,26 @@
+body {
+    font-family: Georgia, serif;
+    background-color: #f4f1e7;
+    color: #222;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #444;
+}
+
+.thread, .reply {
+    border: 1px solid #444;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fffdf6;
+}
+
+.thread .icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+a {
+    color: #222;
+    text-decoration: underline;
+}
