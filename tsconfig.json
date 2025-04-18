@@ -2,7 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "es2020",
+    "target": "es2022",
     "module": "commonjs",
   }
 }
