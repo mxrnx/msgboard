@@ -12,10 +12,15 @@
     </div>
 <% }) %>
 
-<form method="POST" action="/addPost">
+<form method="POST" action="/addPost" class="reply-form">
     <input type="hidden" name="reply_to" value="<%= thread.id %>">
-    <textarea name="message" required></textarea>
-    <button type="submit">Reply</button>
+
+    <div class="form-group">
+        <label for="reply-<%= thread.id %>">Reply</label>
+        <textarea name="message" id="reply-<%= thread.id %>" rows="4" required></textarea>
+    </div>
+
+    <button type="submit">Post Reply</button>
 </form>
 
-<p><a href="/index.html">Back to index</a></p>
+<p><a href="/index.html">Return</a></p>

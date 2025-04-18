@@ -1,6 +1,7 @@
 import type { BasePost } from "./post";
 
-export type ThreadIcon = '🦅' | '🏛️' | '🔥' | '📜' | '🇻🇦';
+export const threadIcons = ['🦅' , '🏛️' , '🔥' , '📜' , '🇻🇦', '🏺'] as const;
+export type ThreadIcon = typeof threadIcons[number];
 
 export type Thread = BasePost & {
     type: 'thread';

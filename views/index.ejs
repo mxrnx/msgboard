@@ -19,20 +19,26 @@
 <hr>
 
 <h2>Start a New Thread</h2>
-<form method="POST" action="/addPost">
-    <label>Emoji Icon:
-        <select name="icon">
-            <option>🦅</option>
-            <option>⚔️</option>
-            <option>🏛️</option>
-            <option>🔥</option>
-            <option>🌿</option>
-        </select>
-    </label>
-    <label>
-        Title
-        <input type="text" name="title" placeholder="Enter a title..." required>
-    </label>
-    <textarea name="message" required></textarea>
+<form method="POST" action="/addPost" class="new-thread-form">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="icon">Icon</label>
+            <select name="icon" id="icon" required>
+                <% threadIcons.forEach(icon => { %>
+                    <option><%= icon %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="form-group grow">
+            <label for="title">Title</label>
+            <input type="text" name="message" id="title" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="body">Post</label>
+        <textarea name="body" id="body" rows="6" required></textarea>
+    </div>
+
     <button type="submit">Post Thread</button>
 </form>

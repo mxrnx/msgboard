@@ -2,10 +2,10 @@ import type { Request, Response } from 'express'
 import {bumpThread, existsThread, insertPost } from '../db'
 import { generatePages } from '../generate'
 import type { Reply } from "../models/reply";
-import type { Thread } from "../models/thread";
+import { type Thread, threadIcons} from "../models/thread";
 
 export async function addPost(req: Request, res: Response) {
-    const post = req.body
+    const post = req.body;
 
     const result = post.reply_to
         ? await addReply(res, post)
@@ -30,7 +30,7 @@ async function addReply(res: Response, reply: Reply) {
 
 async function addThread(res: Response, thread: Thread) {
     thread.type = 'thread';
-    if (!thread.icon) return refusePost(res);
+    if (!thread.icon || !threadIcons.includes(thread.icon)) return refusePost(res);
 
     return await insertPost(thread);
 }

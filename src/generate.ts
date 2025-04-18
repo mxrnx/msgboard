@@ -2,6 +2,7 @@ import ejs from 'ejs'
 import fs from 'fs'
 import path from 'path'
 import { openDb } from "./db";
+import {threadIcons} from "./models/thread";
 
 const templateDir = path.join(__dirname, '../views')
 const publicDir = path.join(__dirname, '../public')
@@ -16,7 +17,7 @@ export async function generatePages(callback?: () => void) {
         return { ...thread, replies: children }
     })
 
-    render('index.ejs', { threads: threadMap }, 'index.html')
+    render('index.ejs', { threads: threadMap, threadIcons: threadIcons }, 'index.html')
 
     for (const thread of threads) {
         const children = replies.filter(r => r.reply_to === thread.id)

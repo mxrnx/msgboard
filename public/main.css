@@ -1,26 +1,81 @@
+:root {
+    --color-bg-main: #f4f1e7;
+    --color-bg-input: #fffdf6;
+    --color-text: #222;
+    --color-border-dark: #444;
+    --color-border-light: #aaa;
+}
+
 body {
-    font-family: Georgia, serif;
-    background-color: #f4f1e7;
+    font-family: 'Georgia', serif;
+    background-color: var(--color-bg-main);
     color: #222;
     max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    border: 1px solid #444;
+    margin: auto;
+    padding: 2em;
+    border: 3px solid var(--color-border-dark);
+}
+
+h1, h2 {
+    font-weight: normal;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.25em;
+    margin-top: 1.5em;
 }
 
 .thread, .reply {
-    border: 1px solid #444;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background-color: #fffdf6;
+    padding: 1em;
+    margin: 1em 0;
+    background-color: var(--color-bg-input);
 }
 
-.thread .icon {
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
+.thread {
+    border: 2px solid var(--color-border-dark);
 }
 
-a {
-    color: #222;
-    text-decoration: underline;
+.reply {
+    border: 2px solid var(--color-border-light);
+}
+
+form .form-row {
+    margin-top: 1em;
+    display: flex;
+    gap: 1em;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-bottom: 1em;
+}
+
+.form-group.grow {
+    flex-grow: 1;
+}
+
+label {
+    font-size: 0.85em;
+    margin-bottom: 0.25em;
+    color: #555;
+}
+
+input, select, textarea {
+    padding: 0.5em;
+    border: 2px solid #aaa;
+    font-family: inherit;
+    font-size: 1em;
+    background: #fefefe;
+}
+
+button {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    background: #ddd;
+    border: 2px solid var(--color-border-light);
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ccc;
 }
