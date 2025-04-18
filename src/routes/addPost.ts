@@ -7,14 +7,9 @@ import { type Thread, threadIcons} from "../models/thread";
 export async function addPost(req: Request, res: Response) {
     const post = req.body;
 
-    const result = post.reply_to
+    post.reply_to
         ? await addReply(res, post)
         : await addThread(res, post);
-
-    if (result.changes == 0)
-        return refusePost(res, 500, 'DB error');
-
-    await generatePages(() => res.redirect('/'))
 }
 
 async function addReply(res: Response, reply: Reply) {
@@ -25,14 +20,24 @@ async function addReply(res: Response, reply: Reply) {
 
     await bumpThread(reply.reply_to);
 
-    return await insertPost(reply);
+    const result = await insertPost(reply);
+
+    if (result.changes == 0)
+        return refusePost(res, 500, 'DB error');
+
+    await generatePages(() => res.redirect(`/${reply.reply_to}.html`));
 }
 
 async function addThread(res: Response, thread: Thread) {
     thread.type = 'thread';
     if (!thread.icon || !threadIcons.includes(thread.icon)) return refusePost(res);
 
-    return await insertPost(thread);
+    const result = await insertPost(thread);
+
+    if (result.changes == 0)
+        return refusePost(res, 500, 'DB error');
+
+    await generatePages(() => res.redirect('/'))
 }
 
 function refusePost(res: Response, status: number = 400, msg: string = 'Post refused.'): undefined {
