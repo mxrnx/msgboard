@@ -1,6 +1,6 @@
-import {Post} from "./post";
+import type { BasePost } from "./post";
 
-export interface Reply extends Post {
+export type Reply = BasePost & {
     type: 'reply';
     reply_to: number; // Thread we are replying to
 }

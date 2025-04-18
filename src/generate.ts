@@ -1,7 +1,7 @@
 import ejs from 'ejs'
 import fs from 'fs'
 import path from 'path'
-import {openDb} from "./db";
+import { openDb } from "./db";
 
 const templateDir = path.join(__dirname, '../views')
 const publicDir = path.join(__dirname, '../public')

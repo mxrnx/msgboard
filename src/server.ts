@@ -1,11 +1,11 @@
 import express from 'express'
 import { addPost } from './routes/addPost'
 import * as path from 'path';
-import {init} from "./routes/init";
-import {initDb} from "./db";
+import { init } from "./routes/init";
+import { initDb } from "./db";
 
 async function main() {
-    await initDb()
+    await initDb();
     const app = express()
     app.use(express.urlencoded({ extended: true }))
     app.use(express.static(path.join(__dirname, '../public')))

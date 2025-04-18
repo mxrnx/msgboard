@@ -1,8 +1,8 @@
-import {Post} from "./post";
+import type { BasePost } from "./post";
 
-export type ThreadIcon = 'pan' | 'smile';
+export type ThreadIcon = '🦅' | '🏛️' | '🔥' | '📜' | '🇻🇦';
 
-export interface Thread extends Post {
+export type Thread = BasePost & {
     type: 'thread';
     title: string;
     icon: ThreadIcon;
