@@ -1,26 +1,20 @@
 <div class="thread">
-    <div>
-        <span class="icon"><%= thread.icon %></span>
-        <%= thread.title %>
-    </div>
-    <p><%= thread.message %></p>
+    <%- include('partials/originalPost.ejs', { thread }) %>
 </div>
 
 <% replies.forEach(reply => { %>
-    <div class="reply">
-        <p><%= reply.message %></p>
-    </div>
+    <%- include('partials/reply.ejs', { reply }) %>
 <% }) %>
 
 <form method="POST" action="/addPost" class="reply-form">
     <input type="hidden" name="reply_to" value="<%= thread.id %>">
 
     <div class="form-group">
-        <label for="reply-<%= thread.id %>">Reply</label>
-        <textarea name="message" id="reply-<%= thread.id %>" rows="4" required></textarea>
+        <label for="comment">respondere</label>
+        <textarea name="message" id="comment" rows="4" required></textarea>
     </div>
 
-    <button type="submit">Post Reply</button>
+    <button type="submit">mittere</button>
 </form>
 
 <p><a href="/">Return</a></p>

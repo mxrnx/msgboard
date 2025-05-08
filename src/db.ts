@@ -3,6 +3,7 @@ import * as sqlite3 from 'sqlite3'
 import {type ISqlite, open} from 'sqlite'
 import type {Post} from "./models/post";
 import {Thread} from "./models/thread";
+import {Reply} from "./models/reply";
 
 const dbFile = './posts.db';
 
@@ -85,4 +86,17 @@ export async function bumpThread(thread_id: number)
         throw new Error(`Thread ${thread_id} could not be bumped`);
 
     stmt.finalize();
+}
+
+export async function getThreads() {
+    const db = await openDb();
+
+    // NB: bumps are not transposed to local timezone, since they're only used for sorting
+    return await db.all<Thread[]>("SELECT id, type, message, datetime(timestamp, 'localtime') as timestamp, title, bump, icon FROM posts where type = 'thread' ORDER BY bump DESC LIMIT 5");
+}
+
+export async function getReplies() {
+    const db = await openDb();
+
+    return await db.all<Reply[]>("SELECT id, type, message, datetime(timestamp, 'localtime') as timestamp, reply_to FROM posts where type = 'reply' ORDER BY timestamp");
 }

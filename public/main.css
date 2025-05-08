@@ -10,10 +10,15 @@ body {
     font-family: 'Georgia', serif;
     background-color: var(--color-bg-main);
     color: #222;
+}
+
+#wrapper {
     max-width: 800px;
     margin: auto;
     padding: 2em;
     border: 3px solid var(--color-border-dark);
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 h1, h2 {
@@ -21,6 +26,8 @@ h1, h2 {
     border-bottom: 2px solid #444;
     padding-bottom: 0.25em;
     margin-top: 1.5em;
+    /*font-variant-caps: all-small-caps;*/
+    text-transform: uppercase;
 }
 
 .thread, .reply {
@@ -35,6 +42,12 @@ h1, h2 {
 
 .reply {
     border: 2px solid var(--color-border-light);
+}
+
+.thread-title {
+    font-weight: bold;
+    color: var(--color-text);
+    text-transform: uppercase;
 }
 
 form .form-row {
@@ -78,4 +91,12 @@ button {
 
 button:hover {
     background: #ccc;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 0.5em;
 }

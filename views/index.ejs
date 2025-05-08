@@ -1,24 +1,14 @@
 <% threads.forEach(thread => { %>
     <div class="thread">
-        <div>
-            <span class="icon"><%= thread.icon %></span>
-            <a href="/<%= thread.id %>.html">
-                <%= thread.title %>
-            </a>
-        </div>
-        <p><%= thread.message %></p>
+        <%- include('partials/originalPost.ejs', { thread }) %>
 
         <% thread.replies.forEach(reply => { %>
-            <div class="reply">
-                <p><%= reply.message %></p>
-            </div>
+            <%- include('partials/reply.ejs', { reply }) %>
         <% }) %>
     </div>
 <% }) %>
 
-<hr>
-
-<h2>Start a New Thread</h2>
+<h2>creare novum argumentum</h2>
 <form method="POST" action="/addPost" class="new-thread-form">
     <div class="form-row">
         <div class="form-group">
@@ -31,14 +21,14 @@
         </div>
         <div class="form-group grow">
             <label for="title">Title</label>
-            <input type="text" name="message" id="title" required>
+            <input type="text" name="title" id="title" required>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="body">Post</label>
-        <textarea name="body" id="body" rows="6" required></textarea>
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="6" required></textarea>
     </div>
 
-    <button type="submit">Post Thread</button>
+    <button type="submit">mittere</button>
 </form>
