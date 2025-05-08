@@ -2,7 +2,7 @@
 
 ## More important
 - [ ] Max length for titles and contents
-- [ ] Proper "x time ago" timestamps
+- [x] Proper "x time ago" timestamps
 - [x] Auto-remove "de" before thread titles
 - [ ] Create "about" page ("where am I?")
 - [ ] Create "guide" page (in Latin)
@@ -14,3 +14,5 @@
 
 ## Less important
 - [ ] u->v, j->i filter
+- [ ] Unit test
+- [ ] Split routes and business logic up more
