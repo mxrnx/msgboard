@@ -20,17 +20,17 @@
             </select>
         </div>
         <div class="form-group grow">
-            <label for="title">De qua re loqui vis?</label>
+            <label for="title">Titulus</label>
             <div class="input-title">
                 <span style="">De</span>
-                <input type="text" placeholder="libris praeferendis" name="title" id="title" maxlength="<%= config.maxTitleLength %>" required />
+                <input type="text" placeholder="re quam loqui vis" name="title" id="title" maxlength="<%= config.maxTitleLength %>" required />
             </div>
         </div>
     </div>
 
     <div class="form-group">
         <label for="message">Nuntium</label>
-        <textarea name="message" id="message" rows="5" maxlength="<%= config.maxMessageLength %>" required></textarea>
+        <textarea placeholder="Nuntium tuum" name="message" id="message" rows="5" maxlength="<%= config.maxMessageLength %>" required></textarea>
     </div>
 
     <button type="submit">Mittere</button>

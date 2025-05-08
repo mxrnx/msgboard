@@ -10,8 +10,8 @@
   - [ ] Background color of "de"
   - [ ] Less bland colors overall, splash of red?
   - [ ] Thick line below "colloquium novum" isn't _it_
-  - [ ] Icon field height equal to title height
-  - [ ] Icon field right padding
+  - [x] Icon field height equal to title height
+  - [x] Icon field right padding
   - [ ] Nicer return to index
   - [ ] Nicer thread titles on the thread pages
 - [ ] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
