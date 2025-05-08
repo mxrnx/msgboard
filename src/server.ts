@@ -7,6 +7,12 @@ import { initDb } from "./db";
 async function main() {
   await initDb();
   const app = express();
+  app.use((req, res, next) => {
+    if (/^\/\d+$/.test(req.path)) {
+      req.url += ".html";
+    }
+    next();
+  });
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(path.join(__dirname, "../public")));
   app.get("/init", init);

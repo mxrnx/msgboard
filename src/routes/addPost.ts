@@ -28,7 +28,7 @@ async function addReply(res: Response, reply: Reply) {
 
   if (result.changes == 0) return refusePost(res, 500, "DB error");
 
-  await generatePages(() => res.redirect(`/${reply.reply_to}.html`));
+  await generatePages(() => res.redirect(`/${reply.reply_to}`));
 }
 
 async function addThread(res: Response, thread: Thread) {

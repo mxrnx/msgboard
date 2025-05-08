@@ -12,9 +12,11 @@
   - [ ] Thick line below "colloquium novum" isn't _it_
   - [ ] Icon field height equal to title height
   - [ ] Icon field right padding
-- [ ] Archive page with old threads
+  - [ ] Nicer return to index
+  - [ ] Nicer thread titles on the thread pages
 
 ## Less important
 - [ ] u->v, j->i filter
 - [ ] Unit test
 - [ ] Split routes and business logic up more
+- [ ] Archive page with old threads
