@@ -4,6 +4,7 @@ import { type ISqlite, open } from "sqlite";
 import type { Post } from "./models/post";
 import type { Thread } from "./models/thread";
 import type { Reply } from "./models/reply";
+import { config } from "./config";
 
 const dbFile = "./posts.db";
 
@@ -92,7 +93,7 @@ export async function getThreads() {
 
   // NB: bumps are not transposed to local timezone, since they're only used for sorting
   return await db.all<Thread[]>(
-    "SELECT id, type, message, datetime(timestamp, 'localtime') as timestamp, title, bump, icon FROM posts where type = 'thread' ORDER BY bump DESC LIMIT 5",
+    `SELECT id, type, message, datetime(timestamp, 'localtime') as timestamp, title, bump, icon FROM posts where type = 'thread' ORDER BY bump DESC LIMIT ${config.activeThreads}`,
   );
 }
 

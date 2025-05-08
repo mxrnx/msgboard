@@ -13,7 +13,9 @@ export async function generatePages(callback?: () => void) {
   const replies = await getReplies();
 
   const threadMap = threads.map((thread) => {
-    const children = replies.filter((r) => r.reply_to === thread.id).slice(-2);
+    const children = replies
+      .filter((r) => r.reply_to === thread.id)
+      .slice(-1 * config.visibleRepliesOnIndex);
     return { ...thread, replies: children };
   });
 
