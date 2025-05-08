@@ -16,13 +16,13 @@ export function addPost(req: Request, res: Response) {
 
 async function addReply(res: Response, reply: Reply) {
   reply.type = "reply";
-  // TODO: check that reply_to refers to a thread, not a regular post
   if (
     isNaN(reply.reply_to) ||
     reply.reply_to < 1 ||
     !(await existsThread(reply.reply_to))
-  )
+  ) {
     return refusePost(res);
+  }
 
   await bumpThread(reply.reply_to);
 
@@ -38,7 +38,13 @@ async function addThread(res: Response, thread: Thread) {
   if (!thread.icon || !threadIcons.includes(thread.icon))
     return refusePost(res);
 
-  const result = await insertPost(thread);
+  const title = "De " + thread.title.trim().replace(/^de\s+/i, "");
+
+  const result = await insertPost({
+    ...thread,
+    title: title,
+    message: thread.message.trim(),
+  });
 
   if (result.changes == 0) return refusePost(res, 500, "DB error");
 
