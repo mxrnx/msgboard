@@ -1,19 +1,19 @@
-import express from 'express'
-import { addPost } from './routes/addPost'
-import * as path from 'path';
+import express from "express";
+import { addPost } from "./routes/addPost";
+import * as path from "path";
 import { init } from "./routes/init";
 import { initDb } from "./db";
 
 async function main() {
-    await initDb();
-    const app = express()
-    app.use(express.urlencoded({ extended: true }))
-    app.use(express.static(path.join(__dirname, '../public')))
-    app.get('/init', init)
-    app.post('/addPost', addPost)
+  await initDb();
+  const app = express();
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.static(path.join(__dirname, "../public")));
+  app.get("/init", init);
+  app.post("/addPost", addPost);
 
-    const PORT = process.env.PORT || 3000
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
 main();
