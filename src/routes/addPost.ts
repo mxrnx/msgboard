@@ -2,7 +2,8 @@ import type { Request, Response } from "express";
 import { bumpThread, existsThread, insertPost } from "../db";
 import { generatePages } from "../generate";
 import type { Reply } from "../models/reply";
-import { type Thread, threadIcons } from "../models/thread";
+import type { Thread } from "../models/thread";
+import { isValidReply, isValidThread } from "../models/post";
 
 export function addPost(req: Request, res: Response) {
   const post = req.body;
@@ -16,11 +17,8 @@ export function addPost(req: Request, res: Response) {
 
 async function addReply(res: Response, reply: Reply) {
   reply.type = "reply";
-  if (
-    isNaN(reply.reply_to) ||
-    reply.reply_to < 1 ||
-    !(await existsThread(reply.reply_to))
-  ) {
+  const parentExists = await existsThread(reply.reply_to);
+  if (!parentExists || !isValidReply(reply)) {
     return refusePost(res);
   }
 
@@ -35,8 +33,7 @@ async function addReply(res: Response, reply: Reply) {
 
 async function addThread(res: Response, thread: Thread) {
   thread.type = "thread";
-  if (!thread.icon || !threadIcons.includes(thread.icon))
-    return refusePost(res);
+  if (!isValidThread(thread)) return refusePost(res);
 
   const title = "De " + thread.title.trim().replace(/^de\s+/i, "");
 

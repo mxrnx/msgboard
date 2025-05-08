@@ -1,7 +1,7 @@
 # To do
 
 ## More important
-- [ ] Max length for titles and contents
+- [x] Max length for titles and contents
 - [x] Proper "x time ago" timestamps
 - [x] Auto-remove "de" before thread titles
 - [ ] Create "about" page ("where am I?")
@@ -10,6 +10,8 @@
   - [ ] Background color of "de"
   - [ ] Less bland colors overall, splash of red?
   - [ ] Thick line below "colloquium novum" isn't _it_
+  - [ ] Icon field height equal to title height
+  - [ ] Icon field right padding
 - [ ] Archive page with old threads
 
 ## Less important

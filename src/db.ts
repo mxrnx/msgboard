@@ -2,8 +2,8 @@ import type { Statement } from "sqlite3";
 import * as sqlite3 from "sqlite3";
 import { type ISqlite, open } from "sqlite";
 import type { Post } from "./models/post";
-import { Thread } from "./models/thread";
-import { Reply } from "./models/reply";
+import type { Thread } from "./models/thread";
+import type { Reply } from "./models/reply";
 
 const dbFile = "./posts.db";
 

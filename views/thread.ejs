@@ -10,8 +10,8 @@
     <input type="hidden" name="reply_to" value="<%= thread.id %>">
 
     <div class="form-group">
-        <label for="comment">Nuntium</label>
-        <textarea name="message" id="comment" rows="4" required></textarea>
+        <label for="message">Nuntium</label>
+        <textarea name="message" id="message" rows="5" maxlength="<%= config.maxMessageLength %>" required></textarea>
     </div>
 
     <button type="submit">Respondere</button>
