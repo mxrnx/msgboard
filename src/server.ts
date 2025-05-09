@@ -8,7 +8,8 @@ async function main() {
   await initDb();
   const app = express();
   app.use((req, res, next) => {
-    if (/^\/\d+$/.test(req.path)) {
+    const path = req.path;
+    if (path === "/guide" || /^\/\d+$/.test(path)) {
       req.url += ".html";
     }
     next();

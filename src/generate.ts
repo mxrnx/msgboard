@@ -25,6 +25,8 @@ export async function generatePages(callback?: () => void) {
     "index.html",
   );
 
+  render("guide.ejs", {}, "guide.html");
+
   for (const thread of threads) {
     const children = replies.filter((r) => r.reply_to === thread.id);
     render("thread.ejs", { thread, replies: children }, `${thread.id}.html`);

@@ -6,6 +6,7 @@
     --color-border-dark: #444;
     --color-border-light: #aaa;
     --color-primary: #6f1d1b;
+    --color-secondary: #ad3230;
 }
 
 body {
@@ -50,7 +51,6 @@ h1, h2 {
 .thread-title {
     font-weight: bold;
     color: var(--color-primary);
-    text-transform: uppercase;
 }
 
 form .form-row {
@@ -104,7 +104,7 @@ select {
 }
 
 .input-title>span {
-    background-color: #f0f0f0;
+    background-color: var(--color-bg-main);
     border-right: 1px solid #ccc;
 }
 
@@ -125,7 +125,7 @@ button {
 }
 
 button:hover {
-    background: #ccc;
+    background: var(--color-secondary);
 }
 
 .post-meta {
@@ -134,4 +134,24 @@ button:hover {
     font-size: 0.85em;
     color: #666;
     margin-bottom: 0.5em;
+}
+
+.navbar {
+    display: flex;
+    justify-content: start;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar a:hover {
+    background-color: var(--color-secondary);
+    border-radius: 4px;
 }
