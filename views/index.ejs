@@ -8,30 +8,32 @@
     </div>
 <% }) %>
 
-<h2>colloquium novum</h2>
-<form method="POST" action="/addPost" class="new-thread-form">
-    <div class="form-row">
-        <div class="form-group">
-            <label for="icon">Sigillum</label>
-            <select name="icon" id="icon" required>
-                <% threadIcons.forEach(icon => { %>
-                    <option><%= icon %></option>
-                <% }) %>
-            </select>
-        </div>
-        <div class="form-group grow">
-            <label for="title">Titulus</label>
-            <div class="input-title">
-                <span style="">De</span>
-                <input type="text" placeholder="re quam loqui vis" name="title" id="title" maxlength="<%= config.maxTitleLength %>" required />
+<div class="post-form">
+    <h2>colloquium novum</h2>
+    <form method="POST" action="/addPost" class="new-thread-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="icon">Sigillum</label>
+                <select name="icon" id="icon" required>
+                    <% threadIcons.forEach(icon => { %>
+                        <option><%= icon %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group grow">
+                <label for="title">Titulus</label>
+                <div class="input-title">
+                    <span style="">De</span>
+                    <input type="text" placeholder="re quam loqui vis" name="title" id="title" maxlength="<%= config.maxTitleLength %>" required />
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="message">Nuntium</label>
-        <textarea placeholder="Nuntium tuum" name="message" id="message" rows="5" maxlength="<%= config.maxMessageLength %>" required></textarea>
-    </div>
+        <div class="form-group">
+            <label for="message">Nuntium</label>
+            <textarea placeholder="Nuntium tuum" name="message" id="message" rows="5" maxlength="<%= config.maxMessageLength %>" required></textarea>
+        </div>
 
-    <button type="submit">Mittere</button>
-</form>
+        <button type="submit">Mittere</button>
+    </form>
+</div>

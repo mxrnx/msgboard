@@ -1,9 +1,11 @@
 :root {
     --color-bg-main: #f4f1e7;
     --color-bg-input: #fffdf6;
-    --color-text: #222;
+    --color-text-dark: #222;
+    --color-text-light: #eee;
     --color-border-dark: #444;
     --color-border-light: #aaa;
+    --color-primary: #6f1d1b;
 }
 
 body {
@@ -25,18 +27,19 @@ h1, h2 {
     font-weight: normal;
     border-bottom: 2px solid var(--color-border-dark);
     padding-bottom: 0.25em;
-    margin-top: 1.5em;
+    /*margin-top: 1.5em;*/
     /*font-variant-caps: all-small-caps;*/
     text-transform: uppercase;
+    color: var(--color-primary);
 }
 
-.thread, .reply {
+.thread, .reply, .post-form {
     padding: 1em;
     margin: 1em 0;
     background-color: var(--color-bg-input);
 }
 
-.thread {
+.thread, .post-form {
     border: 2px solid var(--color-border-dark);
 }
 
@@ -46,7 +49,7 @@ h1, h2 {
 
 .thread-title {
     font-weight: bold;
-    color: var(--color-text);
+    color: var(--color-primary);
     text-transform: uppercase;
 }
 
@@ -114,9 +117,11 @@ select {
 button {
     padding: 0.5em 1em;
     font-size: 1em;
-    background: #ddd;
-    border: 2px solid var(--color-border-light);
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-border-dark);
     cursor: pointer;
+    font-family: inherit;
 }
 
 button:hover {
