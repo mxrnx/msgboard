@@ -15,9 +15,10 @@
   - [x] Nicer thread titles
 - [x] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
 - [x] Sanitize input
-- [ ] Set up CI/CD
+- [x] Set up CI/CD
 - [x] Decide on website name
 - [x] Decide on domain name
+- [ ] Make timestamps independent of user timezone
 
 ## Less important
 - [ ] u->v, j->i filter
@@ -31,4 +32,4 @@
   - [x] Nicer return to index
 - [ ] Improve timestamps: days ago are not intuitive right now
 - [x] Do something with user-provided whitespace
-- [ ] Make timestamps independent of user timezone
+- [ ] Better page titles (with thread titles etc.)
