@@ -33,12 +33,12 @@ async function main() {
   // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   if (config.enableHttp)
     http.createServer(app).listen(port, function () {
-      console.log("Express server listening on port " + port);
+      console.log("HTTP server listening on port " + port);
     });
 
   if (config.enableHttps)
     https.createServer(getHttpsOptions(), app).listen(port, function () {
-      console.log("Express server listening on port " + port);
+      console.log("HTTPS server listening on port " + port);
     });
 }
 
