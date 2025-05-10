@@ -19,6 +19,7 @@
 - [x] Decide on website name
 - [x] Decide on domain name
 - [ ] Make timestamps independent of user timezone
+- [ ] Redirect http to https
 
 ## Less important
 - [ ] u->v, j->i filter

@@ -33,12 +33,19 @@ export async function generatePages(callback?: () => void) {
 function render(template: string, data: object, outFile: string) {
   const filePath = path.join(templateDir, template);
   const layoutPath = path.join(templateDir, "layout.ejs");
-  const content = fs.readFileSync(filePath, "utf8");
-  const body = ejs.render(content, { ...data, config }, { filename: filePath });
-  const html = ejs.render(fs.readFileSync(layoutPath, "utf8"), {
-    title: config.forumTitle,
-    body,
-  });
+  const body = ejs.render(
+    fs.readFileSync(filePath, "utf8"),
+    { ...data, config },
+    { filename: filePath },
+  );
+  const html = ejs.render(
+    fs.readFileSync(layoutPath, "utf8"),
+    {
+      title: config.forumTitle,
+      body,
+    },
+    { filename: filePath },
+  );
   const minifiedHtml = minify(html, {
     removeComments: true,
     collapseWhitespace: true,
