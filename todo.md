@@ -14,7 +14,7 @@
   - [x] Icon field right padding
   - [ ] Nicer thread titles
 - [ ] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
-- [ ] Sanitize input
+- [x] Sanitize input
 - [ ] Set up CI/CD
 
 ## Less important
@@ -23,6 +23,7 @@
 - [ ] Split routes and business logic up more
 - [ ] Archive page with old threads
 - [ ] Basic accounts for names?
+- [ ] Turn user-posted links into anchors
 - Theme improvements
   - [ ] Title for reply form?
   - [ ] Nicer return to index
