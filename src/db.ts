@@ -5,6 +5,7 @@ import type { Post } from "./models/post";
 import type { Thread } from "./models/thread";
 import type { Reply } from "./models/reply";
 import { config } from "./config";
+import { transformPostMessage } from "./utils/stringUtils";
 
 const dbFile = "./posts.db";
 
@@ -42,6 +43,7 @@ export async function openDb() {
 export async function insertPost(
   post: Post,
 ): Promise<ISqlite.RunResult<Statement>> {
+  const message = transformPostMessage(post.message);
   const db = await openDb();
 
   const stmt = await db.prepare(`
@@ -51,15 +53,9 @@ export async function insertPost(
 
   switch (post.type) {
     case "thread":
-      return await stmt.run(
-        post.message,
-        post.icon,
-        null,
-        post.type,
-        post.title,
-      );
+      return await stmt.run(message, post.icon, null, post.type, post.title);
     case "reply":
-      return await stmt.run(post.message, null, post.reply_to, post.type, null);
+      return await stmt.run(message, null, post.reply_to, post.type, null);
     default:
       throw new Error(`Missing post type`);
   }
@@ -124,10 +120,7 @@ export async function getReplies() {
   );
 }
 
-// TODO move
-type ThreadStatus = "active" | "archived";
-
-async function getThreads(threadStatus: ThreadStatus) {
+async function getThreads(threadStatus: "active" | "archived") {
   const db = await openDb();
 
   // NB: bumps are not transposed to local timezone, since they're only used for sorting

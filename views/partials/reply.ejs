@@ -2,5 +2,7 @@
     <div class="util-position-right">
         <%- include('name.ejs', { post: reply }) %>
     </div>
-    <p><%= reply.message %></p>
+    <div>
+        <%- reply.message %> <!-- Already contains p tags -->
+    </div>
 </div>

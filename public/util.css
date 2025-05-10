@@ -11,4 +11,5 @@
     display: flex;
     flex-flow: column wrap;
     align-items: end;
+    text-align: right; /* needed for e.g. "modo" */
 }
