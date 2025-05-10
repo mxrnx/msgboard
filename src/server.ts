@@ -3,6 +3,10 @@ import { addPost } from "./routes/addPost";
 import * as path from "path";
 import { init } from "./routes/init";
 import { initDb } from "./db";
+import fs from "fs";
+import * as https from "node:https";
+import { config } from "./config";
+import * as http from "node:http";
 
 async function main() {
   await initDb();
@@ -24,8 +28,31 @@ async function main() {
   app.get("/init", init);
   app.post("/addPost", addPost);
 
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  const port = config.port || process.env.PORT || 3000;
+
+  // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  if (config.enableHttp)
+    http.createServer(app).listen(port, function () {
+      console.log("Express server listening on port " + port);
+    });
+
+  if (config.enableHttps)
+    https.createServer(getHttpsOptions(), app).listen(port, function () {
+      console.log("Express server listening on port " + port);
+    });
+}
+
+function getHttpsOptions() {
+  // Certificate
+  const privateKey = fs.readFileSync(config.privateKeyFile, "utf8");
+  const certificate = fs.readFileSync(config.certificateFile, "utf8");
+  const ca = fs.readFileSync(config.caFile, "utf8");
+
+  return {
+    key: privateKey,
+    cert: certificate,
+    ca: ca,
+  };
 }
 
 main();
