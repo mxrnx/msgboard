@@ -5,14 +5,14 @@
 - [x] Proper "x time ago" timestamps
 - [x] Auto-remove "de" before thread titles
 - [x] Create "guide" page (in Latin) with link to it
-- [ ] Create "all greek to me" page with link to it
+- [x] Create "all greek to me" page with link to it
 - Theme improvements
   - [x] Background color of "de"
   - [x] Less bland colors overall, splash of red?
   - [x] Thick line below "colloquium novum" isn't _it_
   - [x] Icon field height equal to title height
   - [x] Icon field right padding
-  - [ ] Nicer thread titles
+  - [x] Nicer thread titles
 - [x] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
 - [x] Sanitize input
 - [ ] Set up CI/CD

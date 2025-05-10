@@ -24,6 +24,10 @@ body {
     margin-bottom: 2em;
 }
 
+a {
+    color: var(--color-primary);
+}
+
 h1, h2 {
     font-weight: normal;
     border-bottom: 2px solid var(--color-border-dark);
@@ -32,6 +36,10 @@ h1, h2 {
     /*font-variant-caps: all-small-caps;*/
     text-transform: uppercase;
     color: var(--color-primary);
+}
+
+h1>a, h2>a, .thread-title {
+    text-decoration: none;
 }
 
 .thread, .reply, .post-form, .reply-form, .archived {

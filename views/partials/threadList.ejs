@@ -5,5 +5,9 @@
         <% thread.replies.forEach(reply => { %>
             <%- include('reply.ejs', { reply }) %>
         <% }) %>
+
+        <div class="util-position-right">
+            <a href="<%= thread.id %>">...magis</a>
+        </div>
     </div>
 <% }) %>

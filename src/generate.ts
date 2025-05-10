@@ -20,6 +20,7 @@ export async function generatePages(callback?: () => void) {
 
   // TODO: move static page generation to startup; for testing it's convenient to have them here
   render("guide.ejs", {}, "guide.html");
+  render("english.ejs", {}, "english.html");
 
   for (const thread of [...activeThreads, ...archivedThreads]) {
     const children = replies.filter((r) => r.reply_to === thread.id);
