@@ -4,6 +4,7 @@ import path from "path";
 import { getReplies, getThreads } from "./db";
 import { threadIcons } from "./models/thread";
 import { config } from "./config";
+import { minify } from "html-minifier";
 
 const templateDir = path.join(__dirname, "../views");
 const publicDir = path.join(__dirname, "../public");
@@ -25,6 +26,7 @@ export async function generatePages(callback?: () => void) {
     "index.html",
   );
 
+  // TODO: move static page generation to startup; for testing it's convenient to have them here
   render("guide.ejs", {}, "guide.html");
 
   for (const thread of threads) {
@@ -44,5 +46,11 @@ function render(template: string, data: object, outFile: string) {
     title: config.forumTitle,
     body,
   });
-  fs.writeFileSync(path.join(publicDir, outFile), html);
+  const minifiedHtml = minify(html, {
+    removeComments: true,
+    collapseWhitespace: true,
+    minifyJS: true,
+    minifyCSS: true,
+  });
+  fs.writeFileSync(path.join(publicDir, outFile), minifiedHtml);
 }

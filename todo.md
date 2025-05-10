@@ -15,6 +15,7 @@
   - [ ] Nicer thread titles
 - [ ] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
 - [ ] Sanitize input
+- [ ] Set up CI/CD
 
 ## Less important
 - [ ] u->v, j->i filter
