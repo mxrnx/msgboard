@@ -7,7 +7,8 @@
             <div class="form-group">
                 <label for="icon">Sigillum</label>
                 <select name="icon" id="icon" required>
-                    <% threadIcons.forEach(icon => { %>
+                    <option disabled selected value></option>
+                <% threadIcons.forEach(icon => { %>
                         <option><%= icon %></option>
                     <% }) %>
                 </select>

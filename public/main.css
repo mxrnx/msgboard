@@ -91,6 +91,10 @@ input, select, textarea, .input-title {
     background: #fefefe;
 }
 
+textarea {
+    resize: vertical;
+}
+
 /* Hide arrow, it gets squished to the right.
  * TODO: find a nicer solution for this
  */
