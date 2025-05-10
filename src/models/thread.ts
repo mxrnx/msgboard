@@ -8,4 +8,5 @@ export type Thread = BasePost & {
   title: string;
   icon: ThreadIcon;
   bump: Date;
+  isArchived: boolean;
 };

@@ -1,7 +1,7 @@
 import ejs from "ejs";
 import fs from "fs";
 import path from "path";
-import { getReplies, getThreads } from "./db";
+import { getReplies, getActiveThreads } from "./db";
 import { threadIcons } from "./models/thread";
 import { config } from "./config";
 import { minify } from "html-minifier";
@@ -10,7 +10,7 @@ const templateDir = path.join(__dirname, "../views");
 const publicDir = path.join(__dirname, "../public");
 
 export async function generatePages(callback?: () => void) {
-  const threads = await getThreads();
+  const threads = await getActiveThreads();
   const replies = await getReplies();
 
   const threadMap = threads.map((thread) => {

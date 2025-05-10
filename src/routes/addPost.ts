@@ -1,5 +1,10 @@
 import type { Request, Response } from "express";
-import { bumpThread, existsThread, insertPost } from "../db";
+import {
+  archiveThreadsIfNecessary,
+  bumpThread,
+  existsThread,
+  insertPost,
+} from "../db";
 import { generatePages } from "../generate";
 import type { Reply } from "../models/reply";
 import type { Thread } from "../models/thread";
@@ -44,6 +49,8 @@ async function addThread(res: Response, thread: Thread) {
   });
 
   if (result.changes == 0) return refusePost(res, 500, "DB error");
+
+  await archiveThreadsIfNecessary();
 
   await generatePages(() => res.redirect("/"));
 }

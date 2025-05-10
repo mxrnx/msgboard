@@ -24,7 +24,8 @@ export async function initDb() {
             -- Thread
             title       TEXT,
             bump        DATETIME DEFAULT CURRENT_TIMESTAMP,
-            icon        TEXT
+            icon        TEXT,
+            isArchived  BOOLEAN DEFAULT FALSE
         );
   `);
 
@@ -64,6 +65,25 @@ export async function insertPost(
   }
 }
 
+export async function archiveThreadsIfNecessary() {
+  const threads = await getActiveThreads();
+  if (threads.length <= config.maxActiveThreads) return;
+
+  const idsToArchive = threads
+    .slice(config.maxActiveThreads)
+    .map((thread) => thread.id)
+    .join(",");
+
+  const db = await openDb();
+  const stmt = await db.prepare(
+    `UPDATE posts SET isArchived = TRUE WHERE id in (${idsToArchive})`,
+  );
+
+  stmt.run();
+
+  // TODO: maybe also archive the replies? Currently there's nothing using that status though.
+}
+
 export async function existsThread(thread_id: number) {
   const db = await openDb();
 
@@ -88,12 +108,12 @@ export async function bumpThread(thread_id: number) {
   stmt.finalize();
 }
 
-export async function getThreads() {
+export async function getActiveThreads() {
   const db = await openDb();
 
   // NB: bumps are not transposed to local timezone, since they're only used for sorting
   return await db.all<Thread[]>(
-    `SELECT id, type, message, datetime(timestamp, 'localtime') as timestamp, title, bump, icon FROM posts where type = 'thread' ORDER BY bump DESC LIMIT ${config.activeThreads}`,
+    `SELECT id, type, message, datetime(timestamp, 'localtime') AS timestamp, title, bump, icon FROM posts WHERE type = 'thread' AND NOT isArchived ORDER BY bump DESC`,
   );
 }
 
@@ -101,6 +121,6 @@ export async function getReplies() {
   const db = await openDb();
 
   return await db.all<Reply[]>(
-    "SELECT id, type, message, datetime(timestamp, 'localtime') as timestamp, reply_to FROM posts where type = 'reply' ORDER BY timestamp",
+    "SELECT id, type, message, datetime(timestamp, 'localtime') AS timestamp, reply_to FROM posts WHERE type = 'reply' ORDER BY timestamp",
   );
 }

@@ -13,7 +13,7 @@
   - [x] Icon field height equal to title height
   - [x] Icon field right padding
   - [ ] Nicer thread titles
-- [ ] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
+- [x] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
 - [x] Sanitize input
 - [ ] Set up CI/CD
 

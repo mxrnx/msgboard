@@ -4,7 +4,7 @@ export const config = {
   maxTitleLength: 60,
   maxMessageLength: 3000,
 
-  activeThreads: 5,
+  maxActiveThreads: 5,
 
   visibleRepliesOnIndex: 2,
 };
