@@ -24,6 +24,7 @@ function updateTimes() {
   document.querySelectorAll(".timestamp").forEach((el) => {
     const isoTime = el.dataset.time;
     if (!isoTime) return;
+    el.title = isoTime.toLocaleString();
     el.textContent = timeAgo(isoTime);
   });
 }
