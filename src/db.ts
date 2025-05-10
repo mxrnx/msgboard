@@ -84,11 +84,11 @@ export async function archiveThreadsIfNecessary() {
   // TODO: maybe also archive the replies? Currently there's nothing using that status though.
 }
 
-export async function existsThread(thread_id: number) {
+export async function existsActiveThread(thread_id: number) {
   const db = await openDb();
 
   const stmt = await db.prepare(
-    "SELECT * FROM posts WHERE type = 'thread' AND id = ?",
+    "SELECT * FROM posts WHERE type = 'thread' AND id = ? AND NOT isArchived",
   );
 
   const threads = (await stmt.all<Thread[]>(thread_id)) as Thread[];
@@ -109,12 +109,11 @@ export async function bumpThread(thread_id: number) {
 }
 
 export async function getActiveThreads() {
-  const db = await openDb();
+  return await getThreads("active");
+}
 
-  // NB: bumps are not transposed to local timezone, since they're only used for sorting
-  return await db.all<Thread[]>(
-    `SELECT id, type, message, datetime(timestamp, 'localtime') AS timestamp, title, bump, icon FROM posts WHERE type = 'thread' AND NOT isArchived ORDER BY bump DESC`,
-  );
+export async function getArchivedThreads() {
+  return await getThreads("archived");
 }
 
 export async function getReplies() {
@@ -122,5 +121,17 @@ export async function getReplies() {
 
   return await db.all<Reply[]>(
     "SELECT id, type, message, datetime(timestamp, 'localtime') AS timestamp, reply_to FROM posts WHERE type = 'reply' ORDER BY timestamp",
+  );
+}
+
+// TODO move
+type ThreadStatus = "active" | "archived";
+
+async function getThreads(threadStatus: ThreadStatus) {
+  const db = await openDb();
+
+  // NB: bumps are not transposed to local timezone, since they're only used for sorting
+  return await db.all<Thread[]>(
+    `SELECT id, type, message, datetime(timestamp, 'localtime') AS timestamp, title, bump, icon, isArchived FROM posts WHERE type = 'thread' AND ${threadStatus === "active" ? "NOT" : ""} isArchived ORDER BY bump DESC`,
   );
 }

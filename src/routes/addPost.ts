@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import {
   archiveThreadsIfNecessary,
   bumpThread,
-  existsThread,
+  existsActiveThread,
   insertPost,
 } from "../db";
 import { generatePages } from "../generate";
@@ -22,7 +22,7 @@ export function addPost(req: Request, res: Response) {
 
 async function addReply(res: Response, reply: Reply) {
   reply.type = "reply";
-  const parentExists = await existsThread(reply.reply_to);
+  const parentExists = await existsActiveThread(reply.reply_to);
   if (!parentExists || !isValidReply(reply)) {
     return refusePost(res);
   }

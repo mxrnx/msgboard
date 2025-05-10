@@ -27,6 +27,7 @@
     "sqlite3": "^5.1.7"
   },
   "scripts": {
+    "clean": "rm public/*.html",
     "dev": "ts-node src/server.ts",
     "dev:watch": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
     "lint": "eslint --fix"

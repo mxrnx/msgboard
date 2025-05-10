@@ -9,7 +9,7 @@ async function main() {
   const app = express();
   app.use((req, res, next) => {
     const path = req.path;
-    if (path === "/guide" || /^\/\d+$/.test(path)) {
+    if (path === "/guide" || path === "/archive" || /^\/\d+$/.test(path)) {
       req.url += ".html";
     }
     next();

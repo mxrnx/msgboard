@@ -21,7 +21,7 @@
 - [ ] u->v, j->i filter
 - [ ] Unit test
 - [ ] Split routes and business logic up more
-- [ ] Archive page with old threads
+- [x] Archive page with old threads
 - [ ] Basic accounts for names?
 - [ ] Turn user-posted links into anchors
 - Theme improvements

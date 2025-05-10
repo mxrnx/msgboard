@@ -1,16 +1,8 @@
-<% threads.forEach(thread => { %>
-    <div class="thread">
-        <%- include('partials/originalPost.ejs', { thread }) %>
-
-        <% thread.replies.forEach(reply => { %>
-            <%- include('partials/reply.ejs', { reply }) %>
-        <% }) %>
-    </div>
-<% }) %>
+<%- include('partials/threadList.ejs', { threads }) %>
 
 <div class="post-form">
     <h2>colloquium novum</h2>
-    <form method="POST" action="/addPost" class="new-thread-form">
+    <form method="POST" action="/addPost">
         <div class="form-row">
             <div class="form-group">
                 <label for="icon">Sigillum</label>

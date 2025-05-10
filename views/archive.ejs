@@ -1,0 +1,5 @@
+<% if (threads.length === 0) { %>
+    <p>Nihil adest.</p>
+<% } else { %>
+    <%- include('partials/threadList.ejs', { threads }) %>
+<% } %>

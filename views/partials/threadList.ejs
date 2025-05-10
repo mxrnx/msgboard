@@ -1,0 +1,9 @@
+<% threads.forEach(thread => { %>
+    <div class="thread">
+        <%- include('originalPost.ejs', { thread }) %>
+
+        <% thread.replies.forEach(reply => { %>
+            <%- include('reply.ejs', { reply }) %>
+        <% }) %>
+    </div>
+<% }) %>
