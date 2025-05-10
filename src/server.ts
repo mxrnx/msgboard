@@ -7,10 +7,22 @@ import fs from "fs";
 import * as https from "node:https";
 import { config } from "./config";
 import * as http from "node:http";
+import morgan from "morgan";
 
 async function main() {
   await initDb();
   const app = express();
+
+  // Setup the logger
+  app.use(
+    morgan("combined", {
+      stream: fs.createWriteStream(path.join(__dirname, "../access.log"), {
+        flags: "a",
+      }),
+    }),
+  );
+
+  // Static files
   app.use((req, res, next) => {
     const path = req.path;
     if (
@@ -25,13 +37,14 @@ async function main() {
   });
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(path.join(__dirname, "../public")));
+
+  // Main routes
   app.get("/init", init);
   app.post("/addPost", addPost);
 
   const httpPort = config.httpPort || 80;
   const httpsPort = config.httpsPort || 443;
 
-  // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   if (config.enableHttp)
     http.createServer(app).listen(httpPort, function () {
       console.log("HTTP server listening on port " + httpPort);
