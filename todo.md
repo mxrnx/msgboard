@@ -26,3 +26,4 @@
 - Theme improvements
   - [ ] Title for reply form?
   - [ ] Nicer return to index
+- [ ] Improve timestamps: days ago are not intuitive right now

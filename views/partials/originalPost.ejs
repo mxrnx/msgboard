@@ -1,8 +1,12 @@
-<%- include('name.ejs', { post: thread }) %>
-<div>
-    <span class="icon"><%= thread.icon %></span>
-    <a class="thread-title" href="/<%= thread.id %>">
-        <%= thread.title %>
-    </a>
+<div class="util-position-left-right">
+    <div>
+        <span class="icon"><%= thread.icon %></span>
+        <a class="thread-title" href="/<%= thread.id %>">
+            <%= thread.title %>
+        </a>
+    </div>
+    <div>
+        <%- include('name.ejs', { post: thread }) %>
+    </div>
 </div>
 <p><%= thread.message %></p>

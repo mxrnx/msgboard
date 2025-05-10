@@ -1,4 +1,6 @@
 <div class="reply">
-    <%- include('name.ejs', { post: reply }) %>
+    <div class="util-position-right">
+        <%- include('name.ejs', { post: reply }) %>
+    </div>
     <p><%= reply.message %></p>
 </div>

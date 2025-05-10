@@ -129,11 +129,13 @@ button:hover {
 }
 
 .post-meta {
-    display: flex;
-    justify-content: space-between;
     font-size: 0.85em;
     color: #666;
     margin-bottom: 0.5em;
+}
+
+.timestamp {
+    width: 100%;
 }
 
 .navbar {
