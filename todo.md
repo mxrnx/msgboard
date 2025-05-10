@@ -16,8 +16,8 @@
 - [x] Find better way to archive threads (boolean) in order to disallow replies and do quicker lookups
 - [x] Sanitize input
 - [ ] Set up CI/CD
-- [ ] Domain name / website name
-- [ ] Make timestamps independent of user timezone
+- [x] Decide on website name
+- [x] Decide on domain name
 
 ## Less important
 - [ ] u->v, j->i filter
@@ -28,6 +28,7 @@
 - [x] Turn user-posted links into anchors
 - Theme improvements
   - [ ] Title for reply form?
-  - [ ] Nicer return to index
+  - [x] Nicer return to index
 - [ ] Improve timestamps: days ago are not intuitive right now
 - [x] Do something with user-provided whitespace
+- [ ] Make timestamps independent of user timezone

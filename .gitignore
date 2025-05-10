@@ -3,3 +3,4 @@ public/*.html
 posts.db
 node_modules/
 .idea/
+src/config.ts
