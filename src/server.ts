@@ -28,17 +28,18 @@ async function main() {
   app.get("/init", init);
   app.post("/addPost", addPost);
 
-  const port = config.port || process.env.PORT || 3000;
+  const httpPort = config.httpPort || 80;
+  const httpsPort = config.httpsPort || 443;
 
   // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   if (config.enableHttp)
-    http.createServer(app).listen(port, function () {
-      console.log("HTTP server listening on port " + port);
+    http.createServer(app).listen(httpPort, function () {
+      console.log("HTTP server listening on port " + httpPort);
     });
 
   if (config.enableHttps)
-    https.createServer(getHttpsOptions(), app).listen(port, function () {
-      console.log("HTTPS server listening on port " + port);
+    https.createServer(getHttpsOptions(), app).listen(httpsPort, function () {
+      console.log("HTTPS server listening on port " + httpsPort);
     });
 }
 
